@@ -36,15 +36,19 @@ vector<Interval> Solution::insert(vector<Interval> &v, Interval i) {
     start=min(start,end);
     end=max(start,end);
     bool flag=false;
+    
     for(int i=0;i<n;i++){
+    
         if(v[i].end<start){
             sol.push_back(v[i]);
+            
         }else if(v[i].start>end){
             if(flag==false){
                 sol.push_back({start,end});
             }
             sol.push_back(v[i]);
             flag=true;
+            
         }else{
             start=min(v[i].start,start);
             end=max(v[i].end,end);
@@ -94,11 +98,14 @@ vector<Interval> Solution::merge(vector<Interval> &A) {
     int en = A[0].end;
     vector<Interval> ans;
     ans.push_back({st,en});
+    
     for(int i=1;i<A.size();i++){
+    
         if(A[i].start>en){
             ans.push_back({A[i].start,A[i].end});
             st=A[i].start;
             en=A[i].end;
+            
         }else if(A[i].start<en){
             st=min(st,A[i].start);
             en=max(en,A[i].end);
